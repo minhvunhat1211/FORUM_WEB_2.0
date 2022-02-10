@@ -1,0 +1,136 @@
+﻿@model PagedList.IPagedList<FORUM_WEB_2._0.Models.FrameWorks.BaiDang>
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "ThreadPage";
+    Layout = "~/Views/Shared/my_Layout.cshtml";
+}
+@section styles{
+    <style>
+        .thread-func {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .avatar {
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .col3 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .question {
+            border-bottom: solid 1px #d3d5d7;
+        }
+
+        .navigate > a {
+            color: white;
+        }
+    </style>
+}
+
+<div class="container" style="padding: 0;">
+    <div class="header-thread">
+        @{
+            var TieuDe = "";
+            if (Model.Count > 0)
+            {
+                TieuDe = Model.FirstOrDefault().ChuDe.TenChuDe;
+            }
+            else
+            {
+                TieuDe = "Không có bài đăng!";
+            }
+            <div class="thread-name">
+                <h4 style="color: white; font-weight: 400;">@TieuDe</h4>
+            </div>
+        }
+        <div class="thread-func">
+            <div class="navigation-page">
+                <div style="">
+                    @if ((Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) == 1)
+                    {
+                        <div style="margin: 10px; float: left; ">
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="margin: 10px; float: left">
+                            @Html.ActionLink("<<", "Index", new { page = 1 }, new { @style = "color:white;" })
+                        </div>
+                        <div style="margin: 10px; float: left ">
+                            <a style="color: white;" href="@Url.Action("Index",new { page = (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber - 1) })"> @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber -1 )</a>
+                        </div>
+                    }
+                    <div style="margin: 10px; float: left;color:#ff3838 ">
+                        @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    </div>
+                    @if ((Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) == Model.PageCount)
+                    {
+                        <div style="margin: 10px; float: left ">
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="margin: 10px; float: left ">
+                            <a style="color: white;" href="@Url.Action("Index",new { page = (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber + 1) })"> @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber +1 )</a>
+                        </div>
+                        <div style="margin: 10px; float: left ">
+                            @Html.ActionLink(">>", "Index", new { page = Model.PageCount }, new { @style = "color:white;" })
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="post-thread">
+                <button type="button" class="btn btn-danger btn-post">
+                    <ion-icon name="create-outline"></ion-icon>
+                    <a href="@Url.Action("PostThread", "PostPage", new {id = ViewBag.id_cd})" style="color: white; text-decoration: none;"><span>Post Thread</span></a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style=" margin-top: 20px; background-color: #ebeced;">
+    @{
+        foreach (var item2 in Model)
+        {
+            <div class="row question">
+                <div class="col-xl-1" style="display:flex;align-items: center; justify-content: center;">
+                    <div class="avatar">
+                        <img src="~/Asset/img/@item2.TaiKhoan.Avatar" alt="" style="width: 40px; height: 40px; border-radius: 50%;">
+                    </div>
+                </div>
+                <div class="col-xl-6" style="display:flex;align-items: center;">
+                    <div class="tittle-question">
+                        <a href="@Url.Action("PostPage","PostPage",new {id = item2.ID_BaiDang}) "><span style="color: #23497c;">@item2.TieuDe</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-3" style="display:flex;align-items: center; justify-content: center;">
+                    <div class="col3">
+                        <div>
+                            <span style="color: #8f91aa;">Replies: </span>
+                        </div>
+                        <div>
+                            <span>@item2.BinhLuan.Count()</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2" style="display:flex;align-items: center; justify-content: center;">
+                    <div>
+                        <h5 style="color: #8f91aa;">@item2.NgayDangBai</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
+

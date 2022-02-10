@@ -1,0 +1,47 @@
+﻿@model List<FORUM_WEB_2._0.Models.FrameWorks.BinhLuan>
+@{
+    var session = (UserLogin)Session[FORUM_WEB_2._0.Common.CommonSession.USER_LOGIN];
+}
+<div class="container" style="background-color: #c8d6e5; height: 3px; padding: 0px; margin-top: 15px;"></div>
+@foreach (var item in Model)
+{
+    <div class="container" style=" background-color: #ebeced; margin-top: 25px;">
+        <div class="row">
+            <div class="col-xl-2" style="background-color: #e2e3e5; border-right: solid 1px #c3c6c9;">
+                <div class="user">
+                    <div class="user-avatar">
+                        <img src="~/Asset/img/@item.TaiKhoan.Avatar" alt="">
+                    </div>
+                    <div class="user-name2">
+                        @*<a href="#"><span style="text-decoration: none; color: #3c497c; font-weight: 700;">@item.TaiKhoan.TenDangNhap</span></a>*@
+                        @{ if (item.TenDangNhap != @session.TenDangNhap)
+                            {
+                                <span><a href="@Url.Action("Other", "ProfilePage", new { tenDangNhap = item.TenDangNhap })" style="text-decoration: none; color: #3c497c; font-weight: 700;">@item.TenDangNhap</a></span>
+
+                            }
+                            else
+                            {
+                                <span><a href="@Url.Action("ProfileUser","ProfilePage", new {tenDangNhap = session.TenDangNhap})" style="text-decoration: none; color: #3c497c; font-weight: 700;">@session.TenDangNhap</a></span>
+                            }
+                        }
+                        <span style="color: #23374c; font-weight: 200;">vip</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col xl10">
+                <div class="content-question">
+                    <p style="margin: 0px">@item.NoiDung</p>
+                </div>
+                <div class="question-func">
+                    <div class="report">
+                        <span><a href="@Url.Action("ReportPage","ReportPage")">Report</a></span>
+                    </div>
+                    @*<div class="reply">
+                            <span><a href="#">Reply</a></span>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}

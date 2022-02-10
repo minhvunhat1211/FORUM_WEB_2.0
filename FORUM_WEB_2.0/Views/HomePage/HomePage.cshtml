@@ -1,0 +1,74 @@
+﻿@model List<FORUM_WEB_2._0.Models.FrameWorks.ChuDe>
+@{
+    ViewBag.Title = "HomePage";
+    Layout = "~/Views/Shared/my_Layout.cshtml";
+}
+@section styles{
+    <style>
+        .thread-box {
+            margin-top: 15px;
+            background-color: #e2e3e5;
+        }
+
+        .topic-name {
+            background-color: #5c7099;
+            padding: 5px;
+        }
+
+        .tittle {
+            color: #23498e;
+        }
+
+        .question {
+            justify-content: center;
+            align-items: center;
+            border-bottom: solid 1px #d3d5d7;
+        }
+    </style>
+}
+<div class="container thread-box">
+    <!-- ten cua chu de se o day -->
+    <div class="row topic-name">
+        <div class="col-xl-12" style="color: white;">
+            <h4>Các môn học</h4>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="row question">
+            <div class="col-xl-1">
+                <img src="~/Asset/img/message.png" alt="" style="height: 45px; width: 45px;">
+            </div>
+            <div class="col-xl-5 tittle">
+                <h5><a href="@Url.Action("ThreadPage", "ThreadPage", new { id = item.ID_ChuDe })">@item.TenChuDe</a></h5>
+                @*@Html.ActionLink(item.TenChuDe,"Index","ThreadPage",new {item.ID_ChuDe})*@
+            </div>
+            <div class="col-xl-1">
+                <span>Thread:</span>
+                <span>@item.BaiDang.Count</span>
+            </div>
+            <div class="col-xl-1 ">
+                <span>Message:</span>
+                <span>@item.BaiDang.Count()</span>
+            </div>
+            <div class="col-xl-4">
+                <h4 style="color: blue; text-align: center; font-size: 16px;">
+                    @{
+                        var TieuDe = "";
+                        var cnt = item.BaiDang.Count;
+                        if (cnt > 0)
+                        {
+                            TieuDe = item.BaiDang.ToList()[cnt - 1].TieuDe;
+                        }
+                        else
+                        {
+                            TieuDe = "Chưa có bài đăng!";
+                        }
+                    }
+                    [@TieuDe]
+                </h4>
+            </div>
+        </div>
+    }
+</div>
+

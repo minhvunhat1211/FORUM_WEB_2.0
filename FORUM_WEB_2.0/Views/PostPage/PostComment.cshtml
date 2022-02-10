@@ -1,0 +1,19 @@
+﻿@model FORUM_WEB_2._0.Models.CommentModel
+<div class="col-xl-10">
+    @using (Html.BeginForm("PostComment", "PostPage"))
+    {
+        <div class="content-answer">
+            @Html.TextAreaFor(Model => Model.NoiDung, new { cols = "50", rows = "4", style = "height: 100%; width: 100%; resize: none;", id = "comment" })
+            @Html.ValidationMessageFor(Model => Model.NoiDung)
+        </div>
+        <div class="question-func">
+            <div class="post">
+                <button type="submit" class="btn btn-primary">Comment</button>
+            </div>
+        </div>
+    }
+</div>
+@section scripts{
+    @Scripts.Render("~/bundels/jqueryval")
+}
+

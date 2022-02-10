@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "PostPage";
+    Layout = "~/Views/Shared/my_Layout.cshtml";
+}
+@model FORUM_WEB_2._0.Models.FrameWorks.BaiDang
+@{
+    var session = (UserLogin)Session[FORUM_WEB_2._0.Common.CommonSession.USER_LOGIN];
+}
+@section styles{
+    <style>
+        .user-question {
+            display: flex;
+        }
+
+        .user-name {
+            margin-left: 5px;
+        }
+
+        .user-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .user-avatar > img {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+            }
+
+        .user {
+            justify-content: center;
+            background-color: #e2e3e5;
+        }
+
+        .user-name2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .content-question {
+            margin: 10px;
+            height: 65%;
+        }
+
+        .question-func {
+            display: flex;
+            margin: 10px;
+            justify-content: space-between;
+        }
+
+        .content-answer {
+            margin: 10px;
+            height: 65%;
+        }
+    </style>
+}
+<div class="container">
+    <div class="header-thread">
+        <div class="thread-name">
+            <h4 style="color: white; font-weight: 400;">@Model.TieuDe</h4>
+        </div>
+        <div class="user-question">
+            <div><ion-icon name="person-outline" style="color:#89918b;"></ion-icon></div>
+            <div class="user-name">
+                @*<a href="#"><span style="color: #89918b;">@Model.TenDangNhap</span></a>*@
+                @{ if (@Model.TenDangNhap != @session.TenDangNhap)
+                    {
+                        <span><a href="@Url.Action("Other", "ProfilePage", new { tenDangNhap = @Model.TenDangNhap })" style="color: white; text-decoration:none;">@Model.TenDangNhap</a></span>
+
+                    }
+                    else
+                    {
+                        <span><a href="@Url.Action("ProfileUser","ProfilePage", new {tenDangNhap = session.TenDangNhap})" style="color: white; text-decoration:none;">@session.TenDangNhap</a></span>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style=" background-color: #ebeced;">
+    <div class="row">
+        <div class="col-xl-2" style="background-color: #e2e3e5; border-right: solid 1px #c3c6c9;">
+            <div class="user">
+                <div class="user-avatar">
+                    <img src="~/Asset/img/@Model.TaiKhoan.Avatar" alt="">
+                </div>
+                <div class="user-name2">
+                    @*<a href="#"><span style="text-decoration: none; color: #3c497c; font-weight: 700;">@Model.TenDangNhap</span></a>*@
+                    @{ if (@Model.TenDangNhap != @session.TenDangNhap)
+                        {
+                            <span><a href="@Url.Action("Other", "ProfilePage", new { tenDangNhap = @Model.TenDangNhap })" style="text-decoration: none; color: #3c497c; font-weight: 700;">@Model.TenDangNhap</a></span>
+
+                        }
+                        else
+                        {
+                            <span><a href="@Url.Action("ProfileUser","ProfilePage", new {tenDangNhap = session.TenDangNhap})" style="text-decoration: none; color: #3c497c; font-weight: 700;">@session.TenDangNhap</a></span>
+                        }
+                    }
+                    <span style="color: #23374c; font-weight: 200;">Vip</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="col xl10">
+            <div class="content-question">
+                <p style="margin: 0px">@Model.NoiDung</p>
+            </div>
+            <div class="question-func">
+                <div class="report">
+                    <span><a href="@Url.Action("ReportPage","ReportPage")">Report</a></span>
+                </div>
+                <div class="reply">
+                    <span><a href="#comment">Reply</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*comment-area*@
+
+@Html.Action("Comment", "PostPage")
+
+<div class="container" style=" background-color: #ebeced; margin-top: 30px;">
+    <div class="row">
+        <div class="col-xl-2" style="background-color: #e2e3e5; border-right: solid 1px #c3c6c9;">
+            <div class="user">
+                <div class="user-avatar">
+                    <img src="~/Asset/img/@session.Avatar" alt="">
+                </div>
+                <div class="user-name2">
+                    @*<a href="#"><span style="text-decoration: none; color: #3c497c; font-weight: 700;">@session.TenDangNhap</span></a>*@
+                    @{ if (@Model.TenDangNhap != @session.TenDangNhap)
+                        {
+                            <span><a href="@Url.Action("Other", "ProfilePage", new { tenDangNhap = @Model.TenDangNhap })" style="text-decoration: none; color: #3c497c; font-weight: 700;">@session.TenDangNhap</a></span>
+
+                        }
+                        else
+                        {
+                            <span><a href="@Url.Action("ProfileUser","ProfilePage", new {tenDangNhap = session.TenDangNhap})" style="text-decoration: none; color: #3c497c; font-weight: 700;">@session.TenDangNhap</a></span>
+                        }
+                    }
+                    <span style="color: #23374c; font-weight: 200;">Vip</span>
+                </div>
+
+            </div>
+        </div>
+        @Html.Action("PostComment", "PostPage")
+    </div>
+</div>

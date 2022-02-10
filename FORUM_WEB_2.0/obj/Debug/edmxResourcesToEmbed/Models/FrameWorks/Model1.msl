@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FORUM_WEB_V2ModelStoreContainer" CdmEntityContainer="FORUM_WEB_V2Entities">
+    <EntitySetMapping Name="BaiDang">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.BaiDang">
+        <MappingFragment StoreEntitySet="BaiDang">
+          <ScalarProperty Name="ID_BaiDang" ColumnName="ID_BaiDang" />
+          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="NgayDangBai" ColumnName="NgayDangBai" />
+          <ScalarProperty Name="ID_ChuDe" ColumnName="ID_ChuDe" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BaoCao">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.BaoCao">
+        <MappingFragment StoreEntitySet="BaoCao">
+          <ScalarProperty Name="ID_BaoCao" ColumnName="ID_BaoCao" />
+          <ScalarProperty Name="NguoiBaoCao" ColumnName="NguoiBaoCao" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BinhLuan">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.BinhLuan">
+        <MappingFragment StoreEntitySet="BinhLuan">
+          <ScalarProperty Name="ID_BinhLuan" ColumnName="ID_BinhLuan" />
+          <ScalarProperty Name="ID_BaiDang" ColumnName="ID_BaiDang" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="NgayBinhLuan" ColumnName="NgayBinhLuan" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChuDe">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.ChuDe">
+        <MappingFragment StoreEntitySet="ChuDe">
+          <ScalarProperty Name="ID_ChuDe" ColumnName="ID_ChuDe" />
+          <ScalarProperty Name="TenChuDe" ColumnName="TenChuDe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Img_BaiDang">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.Img_BaiDang">
+        <MappingFragment StoreEntitySet="Img_BaiDang">
+          <ScalarProperty Name="ID_Img_BaiDang" ColumnName="ID_Img_BaiDang" />
+          <ScalarProperty Name="ID_BaiDang" ColumnName="ID_BaiDang" />
+          <ScalarProperty Name="TenAnh_Img_BaiDang" ColumnName="TenAnh_Img_BaiDang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Img_BinhLuan">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.Img_BinhLuan">
+        <MappingFragment StoreEntitySet="Img_BinhLuan">
+          <ScalarProperty Name="ID_Img_BinhLuan" ColumnName="ID_Img_BinhLuan" />
+          <ScalarProperty Name="ID_BinhLuan" ColumnName="ID_BinhLuan" />
+          <ScalarProperty Name="TenAnh_Img_BinhLuan" ColumnName="TenAnh_Img_BinhLuan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaiKhoan">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.TaiKhoan">
+        <MappingFragment StoreEntitySet="TaiKhoan">
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="SoLuongBaiDang" ColumnName="SoLuongBaiDang" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="NgayGiaNhap" ColumnName="NgayGiaNhap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Top_BinhLuan">
+      <EntityTypeMapping TypeName="FORUM_WEB_V2Model.Top_BinhLuan">
+        <MappingFragment StoreEntitySet="Top_BinhLuan">
+          <ScalarProperty Name="ID_BaiDang" ColumnName="ID_BaiDang" />
+          <ScalarProperty Name="ID_BinhLuan" ColumnName="ID_BinhLuan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FORUM_WEB_V2Model.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FORUM_WEB_V2Model.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FORUM_WEB_V2Model.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FORUM_WEB_V2Model.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FORUM_WEB_V2Model.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="FORUM_WEB_V2Model.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FORUM_WEB_V2Model.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FORUM_WEB_V2Model.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FORUM_WEB_V2Model.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

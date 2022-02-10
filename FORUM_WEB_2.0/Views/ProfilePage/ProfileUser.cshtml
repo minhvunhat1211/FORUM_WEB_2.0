@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "ProfileUser";
+    Layout = "~/Views/Shared/my_Layout.cshtml";
+}
+@model FORUM_WEB_2._0.Models.FrameWorks.TaiKhoan
+@{
+    var session = (UserLogin)Session[FORUM_WEB_2._0.Common.CommonSession.USER_LOGIN];
+}
+@section styles{
+    <style>
+        .user-avatar {
+            display: flex;
+            align-items: center;
+            /* justify-content: center; */
+        }
+
+            .user-avatar > img {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+            }
+
+        .button-save {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .button-save > button {
+                width: 170px;
+                height: 55px;
+            }
+    </style>
+}
+<h2 style="text-align: center; color: white;">Account detail</h2>
+<div class="container" style="background-color: white; padding: 15px;">
+    @using (Html.BeginForm("ProfileUser", "ProfilePage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>Tên đăng nhập</td>
+                    <td colspan="2">@Model.TenDangNhap</td>
+                </tr>
+                <tr>
+                    <td>Avatar</td>
+                    <td>
+                        <div class="user-avatar">
+                            <img src="~/Asset/img/@Model.Avatar" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <label for="file">Đổi ảnh đại diện</label>
+                        <input type="file" name="image" id="" value="">
+                        @* @Html.TextBoxFor(Model => Model.Avatar, new {type = "file" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tên hiển thị</td>
+                    <td>
+                        @Model.TenHienThi
+                    </td>
+                    <td>
+                        <label for="file">Đổi tên hiển thị: </label>
+                        @*<input type="text" name="" id="" value="">*@
+                        @Html.TextBoxFor(Model => Model.TenHienThi, new { @placeholder = "Tên hiển thị", @Value = "" })
+                        @Html.ValidationMessageFor(Model => Model.TenHienThi)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số lượng bài đăng</td>
+                    <td colspan="2">@Model.SoLuongBaiDang</td>
+                </tr>
+                <tr>
+                    <td>Ngày gia nhập</td>
+                    <td colspan="2">@Model.NgayGiaNhap</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="button-save">
+                            <button type="submit" class="btn btn-secondary">Save</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+</div>
+

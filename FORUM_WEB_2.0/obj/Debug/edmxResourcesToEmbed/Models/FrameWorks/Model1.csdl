@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FORUM_WEB_V2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BaiDang">
+    <Key>
+      <PropertyRef Name="ID_BaiDang" />
+    </Key>
+    <Property Name="ID_BaiDang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDangBai" Type="DateTime" Precision="3" />
+    <Property Name="ID_ChuDe" Type="Int32" />
+    <Property Name="TenDangNhap" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ChuDe" Relationship="Self.FK__BaiDang__ID_ChuD__3D5E1FD2" FromRole="BaiDang" ToRole="ChuDe" />
+    <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__BaiDang__TenDang__3E52440B" FromRole="BaiDang" ToRole="TaiKhoan" />
+    <NavigationProperty Name="Img_BaiDang" Relationship="Self.FK__Img_BaiDa__ID_Ba__47DBAE45" FromRole="BaiDang" ToRole="Img_BaiDang" />
+    <NavigationProperty Name="Top_BinhLuan" Relationship="Self.FK__Top_BinhL__ID_Ba__02FC7413" FromRole="BaiDang" ToRole="Top_BinhLuan" />
+    <NavigationProperty Name="BinhLuan" Relationship="Self.FK_BinhLuan_BaiDang" FromRole="BaiDang" ToRole="BinhLuan" />
+  </EntityType>
+  <EntityType Name="BaoCao">
+    <Key>
+      <PropertyRef Name="ID_BaoCao" />
+    </Key>
+    <Property Name="ID_BaoCao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NguoiBaoCao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__BaoCao__NguoiBao__44FF419A" FromRole="BaoCao" ToRole="TaiKhoan" />
+  </EntityType>
+  <EntityType Name="BinhLuan">
+    <Key>
+      <PropertyRef Name="ID_BinhLuan" />
+    </Key>
+    <Property Name="ID_BinhLuan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BaiDang" Type="Int32" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBinhLuan" Type="DateTime" Precision="3" />
+    <Property Name="TenDangNhap" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BaiDang" Relationship="Self.FK_BinhLuan_BaiDang" FromRole="BinhLuan" ToRole="BaiDang" />
+    <NavigationProperty Name="Img_BinhLuan" Relationship="Self.FK__Img_BinhL__ID_Bi__4AB81AF0" FromRole="BinhLuan" ToRole="Img_BinhLuan" />
+    <NavigationProperty Name="Top_BinhLuan" Relationship="Self.FK__Top_BinhL__ID_Bi__03F0984C" FromRole="BinhLuan" ToRole="Top_BinhLuan" />
+    <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_BinhLuan_TaiKhoan" FromRole="BinhLuan" ToRole="TaiKhoan" />
+  </EntityType>
+  <EntityType Name="ChuDe">
+    <Key>
+      <PropertyRef Name="ID_ChuDe" />
+    </Key>
+    <Property Name="ID_ChuDe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenChuDe" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BaiDang" Relationship="Self.FK__BaiDang__ID_ChuD__3D5E1FD2" FromRole="ChuDe" ToRole="BaiDang" />
+  </EntityType>
+  <EntityType Name="Img_BaiDang">
+    <Key>
+      <PropertyRef Name="ID_Img_BaiDang" />
+    </Key>
+    <Property Name="ID_Img_BaiDang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BaiDang" Type="Int32" />
+    <Property Name="TenAnh_Img_BaiDang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BaiDang" Relationship="Self.FK__Img_BaiDa__ID_Ba__47DBAE45" FromRole="Img_BaiDang" ToRole="BaiDang" />
+  </EntityType>
+  <EntityType Name="Img_BinhLuan">
+    <Key>
+      <PropertyRef Name="ID_Img_BinhLuan" />
+    </Key>
+    <Property Name="ID_Img_BinhLuan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BinhLuan" Type="Int32" />
+    <Property Name="TenAnh_Img_BinhLuan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BinhLuan" Relationship="Self.FK__Img_BinhL__ID_Bi__4AB81AF0" FromRole="Img_BinhLuan" ToRole="BinhLuan" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="TenDangNhap" />
+    </Key>
+    <Property Name="TenDangNhap" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenHienThi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SoLuongBaiDang" Type="Int32" />
+    <Property Name="Role" Type="Int32" Nullable="false" />
+    <Property Name="NgayGiaNhap" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="BaiDang" Relationship="Self.FK__BaiDang__TenDang__3E52440B" FromRole="TaiKhoan" ToRole="BaiDang" />
+    <NavigationProperty Name="BaoCao" Relationship="Self.FK__BaoCao__NguoiBao__44FF419A" FromRole="TaiKhoan" ToRole="BaoCao" />
+    <NavigationProperty Name="BinhLuan" Relationship="Self.FK_BinhLuan_TaiKhoan" FromRole="TaiKhoan" ToRole="BinhLuan" />
+  </EntityType>
+  <EntityType Name="Top_BinhLuan">
+    <Key>
+      <PropertyRef Name="ID_BaiDang" />
+    </Key>
+    <Property Name="ID_BaiDang" Type="Int32" Nullable="false" />
+    <Property Name="ID_BinhLuan" Type="Int32" />
+    <NavigationProperty Name="BaiDang" Relationship="Self.FK__Top_BinhL__ID_Ba__02FC7413" FromRole="Top_BinhLuan" ToRole="BaiDang" />
+    <NavigationProperty Name="BinhLuan" Relationship="Self.FK__Top_BinhL__ID_Bi__03F0984C" FromRole="Top_BinhLuan" ToRole="BinhLuan" />
+  </EntityType>
+  <Association Name="FK__BaiDang__ID_ChuD__3D5E1FD2">
+    <End Role="ChuDe" Type="Self.ChuDe" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuDe">
+        <PropertyRef Name="ID_ChuDe" />
+      </Principal>
+      <Dependent Role="BaiDang">
+        <PropertyRef Name="ID_ChuDe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BaiDang__TenDang__3E52440B">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TenDangNhap" />
+      </Principal>
+      <Dependent Role="BaiDang">
+        <PropertyRef Name="TenDangNhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Img_BaiDa__ID_Ba__47DBAE45">
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Img_BaiDang" Type="Self.Img_BaiDang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BaiDang">
+        <PropertyRef Name="ID_BaiDang" />
+      </Principal>
+      <Dependent Role="Img_BaiDang">
+        <PropertyRef Name="ID_BaiDang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Top_BinhL__ID_Ba__02FC7413">
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="1" />
+    <End Role="Top_BinhLuan" Type="Self.Top_BinhLuan" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaiDang">
+        <PropertyRef Name="ID_BaiDang" />
+      </Principal>
+      <Dependent Role="Top_BinhLuan">
+        <PropertyRef Name="ID_BaiDang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BinhLuan_BaiDang">
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BaiDang">
+        <PropertyRef Name="ID_BaiDang" />
+      </Principal>
+      <Dependent Role="BinhLuan">
+        <PropertyRef Name="ID_BaiDang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BaoCao__NguoiBao__44FF419A">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BaoCao" Type="Self.BaoCao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TenDangNhap" />
+      </Principal>
+      <Dependent Role="BaoCao">
+        <PropertyRef Name="NguoiBaoCao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Img_BinhL__ID_Bi__4AB81AF0">
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Img_BinhLuan" Type="Self.Img_BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BinhLuan">
+        <PropertyRef Name="ID_BinhLuan" />
+      </Principal>
+      <Dependent Role="Img_BinhLuan">
+        <PropertyRef Name="ID_BinhLuan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Top_BinhL__ID_Bi__03F0984C">
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Top_BinhLuan" Type="Self.Top_BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BinhLuan">
+        <PropertyRef Name="ID_BinhLuan" />
+      </Principal>
+      <Dependent Role="Top_BinhLuan">
+        <PropertyRef Name="ID_BinhLuan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BinhLuan_TaiKhoan">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TenDangNhap" />
+      </Principal>
+      <Dependent Role="BinhLuan">
+        <PropertyRef Name="TenDangNhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FORUM_WEB_V2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BaiDang" EntityType="Self.BaiDang" />
+    <EntitySet Name="BaoCao" EntityType="Self.BaoCao" />
+    <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" />
+    <EntitySet Name="ChuDe" EntityType="Self.ChuDe" />
+    <EntitySet Name="Img_BaiDang" EntityType="Self.Img_BaiDang" />
+    <EntitySet Name="Img_BinhLuan" EntityType="Self.Img_BinhLuan" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" />
+    <EntitySet Name="Top_BinhLuan" EntityType="Self.Top_BinhLuan" />
+    <AssociationSet Name="FK__BaiDang__ID_ChuD__3D5E1FD2" Association="Self.FK__BaiDang__ID_ChuD__3D5E1FD2">
+      <End Role="ChuDe" EntitySet="ChuDe" />
+      <End Role="BaiDang" EntitySet="BaiDang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BaiDang__TenDang__3E52440B" Association="Self.FK__BaiDang__TenDang__3E52440B">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="BaiDang" EntitySet="BaiDang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Img_BaiDa__ID_Ba__47DBAE45" Association="Self.FK__Img_BaiDa__ID_Ba__47DBAE45">
+      <End Role="BaiDang" EntitySet="BaiDang" />
+      <End Role="Img_BaiDang" EntitySet="Img_BaiDang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Top_BinhL__ID_Ba__02FC7413" Association="Self.FK__Top_BinhL__ID_Ba__02FC7413">
+      <End Role="BaiDang" EntitySet="BaiDang" />
+      <End Role="Top_BinhLuan" EntitySet="Top_BinhLuan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BinhLuan_BaiDang" Association="Self.FK_BinhLuan_BaiDang">
+      <End Role="BaiDang" EntitySet="BaiDang" />
+      <End Role="BinhLuan" EntitySet="BinhLuan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BaoCao__NguoiBao__44FF419A" Association="Self.FK__BaoCao__NguoiBao__44FF419A">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="BaoCao" EntitySet="BaoCao" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Img_BinhL__ID_Bi__4AB81AF0" Association="Self.FK__Img_BinhL__ID_Bi__4AB81AF0">
+      <End Role="BinhLuan" EntitySet="BinhLuan" />
+      <End Role="Img_BinhLuan" EntitySet="Img_BinhLuan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Top_BinhL__ID_Bi__03F0984C" Association="Self.FK__Top_BinhL__ID_Bi__03F0984C">
+      <End Role="BinhLuan" EntitySet="BinhLuan" />
+      <End Role="Top_BinhLuan" EntitySet="Top_BinhLuan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="Self.FK_BinhLuan_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="BinhLuan" EntitySet="BinhLuan" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FORUM_WEB_V2Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FORUM_WEB_V2Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

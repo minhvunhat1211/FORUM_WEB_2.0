@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FORUM_WEB_V2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BaiDang">
+    <Key>
+      <PropertyRef Name="ID_BaiDang" />
+    </Key>
+    <Property Name="ID_BaiDang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="NgayDangBai" Type="datetime" />
+    <Property Name="ID_ChuDe" Type="int" />
+    <Property Name="TenDangNhap" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BaoCao">
+    <Key>
+      <PropertyRef Name="ID_BaoCao" />
+    </Key>
+    <Property Name="ID_BaoCao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NguoiBaoCao" Type="varchar" MaxLength="255" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BinhLuan">
+    <Key>
+      <PropertyRef Name="ID_BinhLuan" />
+    </Key>
+    <Property Name="ID_BinhLuan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BaiDang" Type="int" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="NgayBinhLuan" Type="datetime" />
+    <Property Name="TenDangNhap" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ChuDe">
+    <Key>
+      <PropertyRef Name="ID_ChuDe" />
+    </Key>
+    <Property Name="ID_ChuDe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenChuDe" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Img_BaiDang">
+    <Key>
+      <PropertyRef Name="ID_Img_BaiDang" />
+    </Key>
+    <Property Name="ID_Img_BaiDang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BaiDang" Type="int" />
+    <Property Name="TenAnh_Img_BaiDang" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Img_BinhLuan">
+    <Key>
+      <PropertyRef Name="ID_Img_BinhLuan" />
+    </Key>
+    <Property Name="ID_Img_BinhLuan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BinhLuan" Type="int" />
+    <Property Name="TenAnh_Img_BinhLuan" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="TenDangNhap" />
+    </Key>
+    <Property Name="TenDangNhap" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="MatKhau" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="TenHienThi" Type="nvarchar(max)" />
+    <Property Name="Avatar" Type="varchar(max)" />
+    <Property Name="SoLuongBaiDang" Type="int" />
+    <Property Name="Role" Type="int" Nullable="false" />
+    <Property Name="NgayGiaNhap" Type="date" />
+  </EntityType>
+  <EntityType Name="Top_BinhLuan">
+    <Key>
+      <PropertyRef Name="ID_BaiDang" />
+    </Key>
+    <Property Name="ID_BaiDang" Type="int" Nullable="false" />
+    <Property Name="ID_BinhLuan" Type="int" />
+  </EntityType>
+  <Association Name="FK__BaiDang__ID_ChuD__3D5E1FD2">
+    <End Role="ChuDe" Type="Self.ChuDe" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuDe">
+        <PropertyRef Name="ID_ChuDe" />
+      </Principal>
+      <Dependent Role="BaiDang">
+        <PropertyRef Name="ID_ChuDe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BaiDang__TenDang__3E52440B">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TenDangNhap" />
+      </Principal>
+      <Dependent Role="BaiDang">
+        <PropertyRef Name="TenDangNhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BaoCao__NguoiBao__44FF419A">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BaoCao" Type="Self.BaoCao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TenDangNhap" />
+      </Principal>
+      <Dependent Role="BaoCao">
+        <PropertyRef Name="NguoiBaoCao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Img_BaiDa__ID_Ba__47DBAE45">
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Img_BaiDang" Type="Self.Img_BaiDang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BaiDang">
+        <PropertyRef Name="ID_BaiDang" />
+      </Principal>
+      <Dependent Role="Img_BaiDang">
+        <PropertyRef Name="ID_BaiDang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Img_BinhL__ID_Bi__4AB81AF0">
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Img_BinhLuan" Type="Self.Img_BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BinhLuan">
+        <PropertyRef Name="ID_BinhLuan" />
+      </Principal>
+      <Dependent Role="Img_BinhLuan">
+        <PropertyRef Name="ID_BinhLuan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Top_BinhL__ID_Ba__02FC7413">
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="1" />
+    <End Role="Top_BinhLuan" Type="Self.Top_BinhLuan" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaiDang">
+        <PropertyRef Name="ID_BaiDang" />
+      </Principal>
+      <Dependent Role="Top_BinhLuan">
+        <PropertyRef Name="ID_BaiDang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Top_BinhL__ID_Bi__03F0984C">
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Top_BinhLuan" Type="Self.Top_BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BinhLuan">
+        <PropertyRef Name="ID_BinhLuan" />
+      </Principal>
+      <Dependent Role="Top_BinhLuan">
+        <PropertyRef Name="ID_BinhLuan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BinhLuan_BaiDang">
+    <End Role="BaiDang" Type="Self.BaiDang" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BaiDang">
+        <PropertyRef Name="ID_BaiDang" />
+      </Principal>
+      <Dependent Role="BinhLuan">
+        <PropertyRef Name="ID_BaiDang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BinhLuan_TaiKhoan">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TenDangNhap" />
+      </Principal>
+      <Dependent Role="BinhLuan">
+        <PropertyRef Name="TenDangNhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="FORUM_WEB_V2ModelStoreContainer">
+    <EntitySet Name="BaiDang" EntityType="Self.BaiDang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BaoCao" EntityType="Self.BaoCao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChuDe" EntityType="Self.ChuDe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Img_BaiDang" EntityType="Self.Img_BaiDang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Img_BinhLuan" EntityType="Self.Img_BinhLuan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Top_BinhLuan" EntityType="Self.Top_BinhLuan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BaiDang__ID_ChuD__3D5E1FD2" Association="Self.FK__BaiDang__ID_ChuD__3D5E1FD2">
+      <End Role="ChuDe" EntitySet="ChuDe" />
+      <End Role="BaiDang" EntitySet="BaiDang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BaiDang__TenDang__3E52440B" Association="Self.FK__BaiDang__TenDang__3E52440B">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="BaiDang" EntitySet="BaiDang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BaoCao__NguoiBao__44FF419A" Association="Self.FK__BaoCao__NguoiBao__44FF419A">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="BaoCao" EntitySet="BaoCao" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Img_BaiDa__ID_Ba__47DBAE45" Association="Self.FK__Img_BaiDa__ID_Ba__47DBAE45">
+      <End Role="BaiDang" EntitySet="BaiDang" />
+      <End Role="Img_BaiDang" EntitySet="Img_BaiDang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Img_BinhL__ID_Bi__4AB81AF0" Association="Self.FK__Img_BinhL__ID_Bi__4AB81AF0">
+      <End Role="BinhLuan" EntitySet="BinhLuan" />
+      <End Role="Img_BinhLuan" EntitySet="Img_BinhLuan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Top_BinhL__ID_Ba__02FC7413" Association="Self.FK__Top_BinhL__ID_Ba__02FC7413">
+      <End Role="BaiDang" EntitySet="BaiDang" />
+      <End Role="Top_BinhLuan" EntitySet="Top_BinhLuan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Top_BinhL__ID_Bi__03F0984C" Association="Self.FK__Top_BinhL__ID_Bi__03F0984C">
+      <End Role="BinhLuan" EntitySet="BinhLuan" />
+      <End Role="Top_BinhLuan" EntitySet="Top_BinhLuan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BinhLuan_BaiDang" Association="Self.FK_BinhLuan_BaiDang">
+      <End Role="BaiDang" EntitySet="BaiDang" />
+      <End Role="BinhLuan" EntitySet="BinhLuan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="Self.FK_BinhLuan_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="BinhLuan" EntitySet="BinhLuan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
