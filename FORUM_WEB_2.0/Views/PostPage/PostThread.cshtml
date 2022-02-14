@@ -52,8 +52,16 @@
                 <div class="col-xl-12">
                     <div class="tittle-thread">
                         @*<input type="text" name="" id="" placeholder="Tittle thread" style="width: 100%;">*@
-                        @Html.TextBoxFor(Model => Model.TieuDe, htmlAttributes: new { style = "width: 100%;", @placeholder = "Tittle thread" })
+
+                        @Html.TextAreaFor(Model => Model.TieuDe, htmlAttributes: new { style = "width: 100%;", @placeholder = "Tittle thread" })
                         @Html.ValidationMessageFor(Model => Model.TieuDe)
+                        <script>
+                            tinymce.init({
+                                selector: 'textarea',
+                                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                                toolbar_mode: 'floating',
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -61,6 +69,7 @@
                 <div class="col-xl-12">
                     <div class="content-thread">
                         @*<textarea name="" id="" cols="50" rows="4" style="resize: none; width: 100%;" placeholder="Content thread"></textarea>*@
+
                         @Html.TextAreaFor(Model => Model.NoiDung, htmlAttributes: new { cols = "50", rows = "4", style = "resize: none; width: 100%;", @placeholder = "Content thread", htmlAttributes = new { @class = "form-control", @id = "basic-example" } })
                         @Html.ValidationMessageFor(Model => Model.NoiDung)
                     </div>

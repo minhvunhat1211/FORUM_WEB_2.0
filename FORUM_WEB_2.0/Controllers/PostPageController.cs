@@ -29,7 +29,7 @@ namespace FORUM_WEB_2._0.Controllers
 
             return PartialView();
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult PostComment(CommentModel model, int id)
         {
             if (ModelState.IsValid)
@@ -52,7 +52,7 @@ namespace FORUM_WEB_2._0.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult PostThread(ThreadModel model, int id)
         {
             if (ModelState.IsValid)

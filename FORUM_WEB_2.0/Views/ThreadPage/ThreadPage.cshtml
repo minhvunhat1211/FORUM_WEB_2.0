@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-xl-6" style="display:flex;align-items: center;">
                     <div class="tittle-question">
-                        <a href="@Url.Action("PostPage","PostPage",new {id = item2.ID_BaiDang}) "><span style="color: #23497c;">@item2.TieuDe</span></a>
+                        <a href="@Url.Action("PostPage","PostPage",new {id = item2.ID_BaiDang}) "><span style="color: #23497c;">@Html.Raw(item2.TieuDe)</span></a>
                     </div>
                 </div>
                 <div class="col-xl-3" style="display:flex;align-items: center; justify-content: center;">

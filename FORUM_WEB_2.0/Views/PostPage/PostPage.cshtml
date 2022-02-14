@@ -61,7 +61,7 @@
 <div class="container">
     <div class="header-thread">
         <div class="thread-name">
-            <h4 style="color: white; font-weight: 400;">@Model.TieuDe</h4>
+            <h4 style="color: white; font-weight: 400;">@Html.Raw(Model.TieuDe)</h4>
         </div>
         <div class="user-question">
             <div><ion-icon name="person-outline" style="color:#89918b;"></ion-icon></div>
@@ -107,7 +107,7 @@
         </div>
         <div class="col xl10">
             <div class="content-question">
-                <p style="margin: 0px">@Model.NoiDung</p>
+                <p style="margin: 0px">@Html.Raw(Model.NoiDung)</p>
             </div>
             <div class="question-func">
                 <div class="report">
