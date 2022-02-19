@@ -194,6 +194,8 @@
     <Compile Include="Models\FrameWorks\Top_BinhLuan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Img_CommentModel.cs" />
+    <Compile Include="Models\Img_ThreadModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\ThreadModel.cs" />
@@ -267,6 +269,8 @@
     <Content Include="Views\PostPage\PostComment.cshtml" />
     <Content Include="Views\PostPage\PostThread.cshtml" />
     <Content Include="Views\ProfilePage\ProfileUser.cshtml" />
+    <Content Include="Views\PostPage\Img_Post.cshtml" />
+    <Content Include="Views\PostPage\Img_Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

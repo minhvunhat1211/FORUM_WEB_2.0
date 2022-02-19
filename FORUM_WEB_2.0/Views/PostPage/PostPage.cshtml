@@ -46,6 +46,28 @@
             height: 65%;
         }
 
+        .content-text {
+            display: flex;
+            width: 100%;
+        }
+
+        .content-img {
+            height: 100%;
+            display: flex;
+            padding: 0px;
+            flex-direction: column;
+        }
+
+            .content-img > .img {
+                margin-bottom: 15px;
+                width: 45%;
+            }
+
+                .content-img > .img > img {
+                    width: 100%;
+                    cursor: pointer;
+                }
+
         .question-func {
             display: flex;
             margin: 10px;
@@ -105,16 +127,29 @@
 
             </div>
         </div>
-        <div class="col xl10">
+        <div class="col xl10" style="height: 100%;">
             <div class="content-question">
-                <p style="margin: 0px">@Html.Raw(Model.NoiDung)</p>
+                <div class="container content-text" style="padding: 0;">
+                    <p style="margin: 0px">@Html.Raw(Model.NoiDung)</p>
+                </div>
+                <div class="container content-img" style="padding: 0px;">
+                    @Html.Action("Img_Post","PostPage")
+                </div>
             </div>
+            <!-- modal -->
+            <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+                <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+                <div class="w3-modal-content w3-animate-zoom" style="width: 60%;">
+                    <img id="img01" style="width:100%">
+                </div>
+            </div>
+            <!-- end modal -->
             <div class="question-func">
                 <div class="report">
-                    <span><a href="@Url.Action("ReportPage","ReportPage")">Report</a></span>
+                    <span><a href="#">Report</a></span>
                 </div>
                 <div class="reply">
-                    <span><a href="#comment">Reply</a></span>
+                    <span><a href="#">Reply</a></span>
                 </div>
             </div>
         </div>
@@ -151,3 +186,9 @@
         @Html.Action("PostComment", "PostPage")
     </div>
 </div>
+<script>
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+    }
+</script>

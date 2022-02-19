@@ -45,7 +45,7 @@
     </div>
 </div>
 <div class="container" style="padding: 0;">
-    @using (Html.BeginForm("PostThread", "PostPage"))
+    @using (Html.BeginForm("PostThread", "PostPage", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="post-thread">
             <div class="row">
@@ -68,10 +68,9 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="content-thread">
-                        @*<textarea name="" id="" cols="50" rows="4" style="resize: none; width: 100%;" placeholder="Content thread"></textarea>*@
-
                         @Html.TextAreaFor(Model => Model.NoiDung, htmlAttributes: new { cols = "50", rows = "4", style = "resize: none; width: 100%;", @placeholder = "Content thread", htmlAttributes = new { @class = "form-control", @id = "basic-example" } })
                         @Html.ValidationMessageFor(Model => Model.NoiDung)
+                        <input type="file" name="postedFiles" id="" value="" multiple>
                     </div>
                 </div>
             </div>

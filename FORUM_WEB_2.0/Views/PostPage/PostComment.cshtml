@@ -1,11 +1,11 @@
 ﻿@model FORUM_WEB_2._0.Models.CommentModel
 <div class="col-xl-10">
-    @using (Html.BeginForm("PostComment", "PostPage"))
+    @using (Html.BeginForm("PostComment", "PostPage", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
     <div class="content-answer">
         @Html.TextAreaFor(Model => Model.NoiDung, new { cols = "50", rows = "4", style = "height: 100%; width: 100%; resize: none;", id = "comment" })
         @Html.ValidationMessageFor(Model => Model.NoiDung)
-        
+        <input type="file" name="image" id="" value="" multiple>
     </div>
         <div class="question-func">
             <div class="post">
@@ -21,6 +21,5 @@
         });
     </script>
 </div>
-@section scripts{
-}
+
 

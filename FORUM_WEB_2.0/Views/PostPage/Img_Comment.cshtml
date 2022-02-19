@@ -1,0 +1,9 @@
+﻿@model List<FORUM_WEB_2._0.Models.FrameWorks.Img_BinhLuan>
+
+@foreach (var item in Model)
+{
+    <div class="img">
+        <img src="~/Asset/img/@item.TenAnh_Img_BinhLuan" alt="" onclick="onClick(this)" class="w3-hover-opacity">
+    </div>
+}
+
