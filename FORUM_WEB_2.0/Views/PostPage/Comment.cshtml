@@ -55,6 +55,14 @@
                     <div class="reply">
                         <span><a href="#">Reply</a></span>
                     </div>
+                    @{
+                        if (item.TenDangNhap == session.TenDangNhap)
+                        {
+                            <div class="delete">
+                                <span><a href="@Url.Action("Delete_Comment","PostPage", new {id_comment = item.ID_BinhLuan })">Delete</a></span>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>

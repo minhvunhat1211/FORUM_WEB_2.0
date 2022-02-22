@@ -151,6 +151,14 @@
                 <div class="reply">
                     <span><a href="#">Reply</a></span>
                 </div>
+                @{
+                    if (Model.TenDangNhap == session.TenDangNhap)
+                    {
+                        <div class="delete">
+                            <span><a href="@Url.Action("Delete_Post","PostPage",new {id = Model.ID_BaiDang})">Delete</a></span>
+                        </div>
+                    }
+                }
             </div>
         </div>
     </div>

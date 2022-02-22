@@ -133,5 +133,19 @@ namespace FORUM_WEB_2._0.Controllers
             lst = db.Img_BinhLuan.Where(x => x.ID_BinhLuan == id_comment).ToList();
             return PartialView(lst);
         }
+        public ActionResult Delete_Post(int id)
+        {
+            BaiDang baiDang = db.BaiDang.Find(id);
+            db.BaiDang.Remove(baiDang);
+            db.SaveChanges();
+            return RedirectToAction("ThreadPage","ThreadPage", new { id = id });
+        }
+        public ActionResult Delete_Comment(int id_comment)
+        {
+            BinhLuan binhLuan = db.BinhLuan.Find(id_comment);
+            db.BinhLuan.Remove(binhLuan);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
