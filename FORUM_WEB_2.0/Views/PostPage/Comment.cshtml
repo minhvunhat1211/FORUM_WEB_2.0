@@ -34,6 +34,7 @@
                 <div class="content-question">
                     <div class="container content-text" style="padding: 0;">
                         <p style="margin: 0px">@Html.Raw(item.NoiDung)</p>
+                        
                     </div>
                     <div class="container content-img" style="padding: 0px;">
                         @Html.Action("Img_Comment", "PostPage", new {id_comment = item.ID_BinhLuan })
@@ -61,6 +62,31 @@
                             <div class="delete">
                                 <span><a href="@Url.Action("Delete_Comment","PostPage", new {id_comment = item.ID_BinhLuan })">Delete</a></span>
                             </div>
+                            <div class="edit">
+                                <span>@Html.ActionLink("Edit","Edit_Comment","PostPage", new { id_comment = item.ID_BinhLuan}, new { @class = "form-control", data_toggle = "modal", data_target = "#exampleModal2" })</span>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        @using (Html.BeginForm("Edit_Comment", "PostPage", new { id_comment = item.ID_BinhLuan}, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            <div class="content-answer">
+                                                @Html.TextAreaFor(Model => item.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                                                
+                                                
+                                            </div>
+                                            <div class="question-func">
+                                                <div class="post">
+                                                    <button type="submit" class="btn btn-primary">Edit Comment</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
                         }
                     }
                 </div>
@@ -74,4 +100,11 @@
         document.getElementById("img01").src = element.src;
         document.getElementById("modal01").style.display = "block";
     }
+
+
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        toolbar_mode: 'floating',
+    });
 </script>

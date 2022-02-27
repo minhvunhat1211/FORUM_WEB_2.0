@@ -1,0 +1,58 @@
+﻿@model FORUM_WEB_2._0.Models.FrameWorks.BaiDang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <h2>Details</h2>
+
+        <div>
+            <h4>BaiDang</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.TieuDe)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TieuDe)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NoiDung)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NoiDung)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NgayDangBai)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgayDangBai)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ChuDe.TenChuDe)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ChuDe.TenChuDe)
+                </dd>
+                
+
+
+            </dl>
+        </div>
+        <p>
+            
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div><!--/.row-->
+</div>
+

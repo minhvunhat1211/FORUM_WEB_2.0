@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FORUM_WEB_2._0.Models.FrameWorks.BaiDang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TieuDe)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoiDung)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayDangBai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ChuDe.TenChuDe)
+                </th>
+                
+                
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TieuDe)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoiDung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDangBai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChuDe.TenChuDe)
+                    </td>
+                    
+                   
+                    <td>
+
+                        @Html.ActionLink("Details", "Details", new { id = item.ID_BaiDang }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID_BaiDang })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div><!--/.row-->
+</div>
+
+
+

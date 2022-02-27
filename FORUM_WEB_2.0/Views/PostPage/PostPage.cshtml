@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "PostPage";
     Layout = "~/Views/Shared/my_Layout.cshtml";
 }
@@ -133,7 +132,7 @@
                     <p style="margin: 0px">@Html.Raw(Model.NoiDung)</p>
                 </div>
                 <div class="container content-img" style="padding: 0px;">
-                    @Html.Action("Img_Post","PostPage")
+                    @Html.Action("Img_Post", "PostPage")
                 </div>
             </div>
             <!-- modal -->
@@ -156,6 +155,54 @@
                     {
                         <div class="delete">
                             <span><a href="@Url.Action("Delete_Post","PostPage",new {id = Model.ID_BaiDang})">Delete</a></span>
+                        </div>
+                        <div class="edit">
+                            <span><a href="@Url.Action("Edit_Post","PostPage",new {id = Model.ID_BaiDang})" data-toggle="modal" data-target="#exampleModal">Edit</a></span>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    @using (Html.BeginForm("Edit_Post", "PostPage", new { id = Model.ID_BaiDang }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <div class="post-thread">
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="tittle-thread">
+                                                        @*<input type="text" name="" id="" placeholder="Tittle thread" style="width: 100%;">*@
+
+                                                        @*@Html.TextAreaFor(Model => Model.TieuDe, htmlAttributes: new { style = "width: 100%;", @placeholder = "Tittle thread" })*@
+                                                        @Html.TextAreaFor(Model => Model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(Model => Model.TieuDe)
+                                                        <script>
+                                                            tinymce.init({
+                                                                selector: 'textarea',
+                                                                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                                                                toolbar_mode: 'floating',
+                                                            });
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="content-thread">
+                                                        @*@Html.TextAreaFor(Model => Model.NoiDung, htmlAttributes: new { cols = "50", rows = "4", style = "resize: none; width: 100%;", @placeholder = "Content thread", htmlAttributes = new { @class = "form-control", @id = "basic-example" } })*@
+                                                        @Html.TextAreaFor(Model => Model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(Model => Model.NoiDung)
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container" style="padding: 0;">
+                                                <div class="button">
+                                                    <button type="submit" class="btn btn-primary">Edit thread</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
                         </div>
                     }
                 }

@@ -20,6 +20,7 @@ namespace FORUM_WEB_2._0.Controllers
             var post = db.BaiDang.Where(x => x.ID_BaiDang == id).FirstOrDefault();
             return View(post);
         }
+        
         public ActionResult Comment(int id)
         {
             var lst = new List<FORUM_WEB_2._0.Models.FrameWorks.BinhLuan>();
@@ -144,6 +145,29 @@ namespace FORUM_WEB_2._0.Controllers
         {
             BinhLuan binhLuan = db.BinhLuan.Find(id_comment);
             db.BinhLuan.Remove(binhLuan);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        [HttpPost]
+        public ActionResult Edit_Post(ThreadModel model, int id)
+        {
+            BaiDang baiDang = db.BaiDang.Find(id);
+            baiDang.TieuDe = model.TieuDe;
+            baiDang.NoiDung = model.NoiDung;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        [HttpGet]
+        public ActionResult Edit_Comment(int id_comment)
+        {
+            BinhLuan binhLuan = db.BinhLuan.Find(id_comment);
+            return View(binhLuan);
+        }
+        [HttpPost]
+        public ActionResult Edit_Comment(CommentModel model, int id_comment)
+        {
+            BinhLuan binhLuan = db.BinhLuan.Find(id_comment);
+            binhLuan.NoiDung = model.NoiDung;
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
         }

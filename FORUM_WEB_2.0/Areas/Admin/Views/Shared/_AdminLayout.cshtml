@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+@using FORUM_WEB_2._0.Common
+@{
+    var sessionAdmin = (AdminLogin)Session[FORUM_WEB_2._0.Common.CommonSession.ADMIN_LOGIN];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VOZ - Dashboard</title>
+    <link href="~/Areas/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Areas/css/styles.css" rel="stylesheet">
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    @RenderSection("styles", false)
+</head>
+<body>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span>VOZ</span>Admin</a>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <div class="profile-sidebar">
+            <div class="profile-userpic">
+                <img src="~/Asset/img/@sessionAdmin.Avatar" class="img-responsive" alt="">
+            </div>
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">@sessionAdmin.TenDangNhap</div>
+                <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="divider"></div>
+        <form role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <ul class="nav menu">
+            <li><a href="@Url.Action("Index","TaiKhoans")"> Tài khoản</a></li>
+            <li><a href="@Url.Action("Index","BaoCaos")"> Báo cáo</a></li>
+            <li><a href="@Url.Action("Index","BinhLuans")"> Bình luận</a></li>
+            <li><a href="@Url.Action("Index","BaiDangs")"> Bài đăng</a></li>
+            <li><a href="@Url.Action("Index","ChuDesss")"> Chủ đề </a></li>
+            <li><a href="@Url.Action("Logout","Admin_Login")"> Logout</a></li>
+        </ul>
+    </div><!--/.sidebar-->
+    @RenderBody()
+
+</body>
+</html>

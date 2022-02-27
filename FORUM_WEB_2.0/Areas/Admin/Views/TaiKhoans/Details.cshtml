@@ -1,0 +1,61 @@
+﻿@model FORUM_WEB_2._0.Models.FrameWorks.TaiKhoan
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <div>
+            <h4>TaiKhoan</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.MatKhau)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MatKhau)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Avatar)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Avatar)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SoLuongBaiDang)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SoLuongBaiDang)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Role)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Role)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NgayGiaNhap)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgayGiaNhap)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div><!--/.row-->
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FORUM_WEB_2._0.Models.FrameWorks.BinhLuan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoiDung)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayBinhLuan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BaiDang.TieuDe)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoiDung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayBinhLuan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BaiDang.TieuDe)
+                    </td>
+
+                    <td>
+
+                        @Html.ActionLink("Details", "Details", new { id = item.ID_BinhLuan }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID_BinhLuan })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div><!--/.row-->
+</div>
+

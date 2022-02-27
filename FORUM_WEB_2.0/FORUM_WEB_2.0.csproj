@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -134,6 +134,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\Admin_LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaiDangsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaoCaosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BinhLuansController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChuDesssController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
+    <Compile Include="Areas\Admin\Data\Admin_LoginModel.cs" />
+    <Compile Include="Common\AdminLogin.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Common\CommonSession.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
@@ -203,6 +212,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\css\bootstrap-table.css" />
+    <Content Include="Areas\css\bootstrap-theme.css" />
+    <Content Include="Areas\css\bootstrap-theme.min.css" />
+    <Content Include="Areas\css\bootstrap.css" />
+    <Content Include="Areas\css\bootstrap.min.css" />
+    <Content Include="Areas\css\datepicker.css" />
+    <Content Include="Areas\css\datepicker3.css" />
+    <Content Include="Areas\css\font-awesome.min.css" />
+    <Content Include="Areas\css\styles.css" />
     <Content Include="Asset\imgtest.png" />
     <Content Include="Asset\img\message.png" />
     <Content Include="Asset\img\photo-1637548739071-7c24bbcab218.png" />
@@ -237,6 +255,38 @@
     <Content Include="Models\FrameWorks\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\css\bootstrap-theme.css.map" />
+    <Content Include="Areas\css\bootstrap-theme.min.css.map" />
+    <Content Include="Areas\css\bootstrap.css.map" />
+    <Content Include="Areas\css\bootstrap.min.css.map" />
+    <Content Include="Areas\Admin\Views\Admin_Login\Admin_Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BaiDangs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BaiDangs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BaiDangs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BaiDangs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BaiDangs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoCaos\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoCaos\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoCaos\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoCaos\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoCaos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDesss\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDesss\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDesss\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDesss\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDesss\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<FORUM_WEB_2._0.Models.FrameWorks.BaoCao>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoiDung)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TaiKhoan.TenHienThi)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoiDung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaiKhoan.TenHienThi)
+                    </td>
+                    <td>
+                       
+                        @Html.ActionLink("Details", "Details", new { id = item.ID_BaoCao }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID_BaoCao })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div><!--/.row-->
+</div>
