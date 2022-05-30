@@ -1,9 +1,8 @@
-﻿
+﻿@model FORUM_WEB_2._0.Models.FrameWorks.Ta
 @{
     ViewBag.Title = "ProfileUser";
     Layout = "~/Views/Shared/my_Layout.cshtml";
 }
-@model FORUM_WEB_2._0.Models.FrameWorks.TaiKhoan
 @{
     var session = (UserLogin)Session[FORUM_WEB_2._0.Common.CommonSession.USER_LOGIN];
 }
@@ -35,6 +34,7 @@
 }
 <h2 style="text-align: center; color: white;">Account detail</h2>
 <div class="container" style="background-color: white; padding: 15px;">
+    @Html.ValidationSummary(true)
     @using (Html.BeginForm("ProfileUser", "ProfilePage", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <table class="table table-bordered">

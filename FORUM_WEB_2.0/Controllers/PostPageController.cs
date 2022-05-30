@@ -157,16 +157,16 @@ namespace FORUM_WEB_2._0.Controllers
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
         }
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult Edit_Comment(int id_comment)
         {
             BinhLuan binhLuan = db.BinhLuan.Find(id_comment);
             return View(binhLuan);
-        }
+        }*/
         [HttpPost]
         public ActionResult Edit_Comment(CommentModel model, int id_comment)
         {
-            BinhLuan binhLuan = db.BinhLuan.Find(id_comment);
+            BinhLuan binhLuan = db.BinhLuan.Where(x => x.ID_BinhLuan == id_comment).FirstOrDefault();
             binhLuan.NoiDung = model.NoiDung;
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());

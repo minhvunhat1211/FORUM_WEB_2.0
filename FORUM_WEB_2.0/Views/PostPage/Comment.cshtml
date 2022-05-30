@@ -63,7 +63,9 @@
                                 <span><a href="@Url.Action("Delete_Comment","PostPage", new {id_comment = item.ID_BinhLuan })">Delete</a></span>
                             </div>
                             <div class="edit">
-                                <span>@Html.ActionLink("Edit","Edit_Comment","PostPage", new { id_comment = item.ID_BinhLuan}, new { @class = "form-control", data_toggle = "modal", data_target = "#exampleModal2" })</span>
+                                <span>
+                                    <span><a href="@Url.Action("Edit_Comment","PostPage",new {id_comment = item.ID_BinhLuan})" data-toggle="modal" data-target="#exampleModal2">Edit</a></span>
+                                </span>
                             </div>
 
                             <!-- Modal -->
@@ -74,8 +76,6 @@
                                         {
                                             <div class="content-answer">
                                                 @Html.TextAreaFor(Model => item.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
-                                                
-                                                
                                             </div>
                                             <div class="question-func">
                                                 <div class="post">
